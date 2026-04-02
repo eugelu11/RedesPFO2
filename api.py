@@ -1,6 +1,18 @@
 import sqlite3
 import os
+from flask import Flask
 from werkzeug.security import generate_password_hash, check_password_hash
+
+app = Flask(__SISTEMA DE LOGIN__)
+
+@app.route('/')
+
+def index():
+    return
+
+
+if __SISTEMA DE LOGIN__ =="__main__":
+    app.run(debug=True)
 
 PATH_APP = os.getcwd()
 PATH_BBDD = os.path.join(PATH_APP, 'miBBDD.db')
@@ -15,19 +27,23 @@ cursor.execute("""
 """)
 con.commit()
 
-usuario_ejemplo = "admin"
-contraseña_ejemplo = "1234"
-hash_ejemplo = generate_password_hash(contraseña_ejemplo)
 
-try:
-    cursor.execute(
-        "INSERT INTO usuarios (usuario, contraseña) VALUES (?, ?)",
-        (usuario_ejemplo, hash_ejemplo)
-    )
-    con.commit()
-    print("Usuario de ejemplo creado")
-except sqlite3.IntegrityError:
-    print("El usuario ya existe")
+def registrar_usuario():
+    print("\n--- REGISTRO ---")
+    usuario = input("Ingrese su usuario: ")
+    contraseña = input("Ingrese su contraseña: ")
+
+    hash_contraseña = generate_password_hash(contraseña)
+
+    try:
+        cursor.execute(
+            "INSERT INTO usuarios (usuario, contraseña) VALUES (?, ?)",
+            (usuario, hash_contraseña)
+        )
+        con.commit()
+        print("Usuario registrado exitosamente")
+    except sqlite3.IntegrityError:
+        print("Ese usuario ya existe")
 
 
 def iniciar_sesion():
@@ -54,5 +70,23 @@ def iniciar_sesion():
         return False
 
 
-iniciar_sesion()
+while True:
+    print("\n=== SISTEMA DE LOGIN ===")
+    print("1. Registrarse")
+    print("2. Iniciar sesion")
+    print("3. Salir")
+
+    opcion = input("Seleccione una opcion: ")
+
+    if opcion == "1":
+        registrar_usuario()
+    elif opcion == "2":
+        if iniciar_sesion():
+            print("Bienvenido/a a la plataforma")
+            break
+    elif opcion == "3":
+        break
+    else:
+        print("Opcion invalida")
+
 con.close()

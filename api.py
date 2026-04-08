@@ -28,6 +28,8 @@ cursor.execute("""
 con.commit()
 
 
+
+
 def registrar_usuario():
     print("\n--- REGISTRO ---")
     usuario = input("Ingrese su usuario: ")
@@ -71,6 +73,7 @@ def iniciar_sesion():
 
 
 while True:
+    
     print("\n=== SISTEMA DE LOGIN ===")
     print("1. Registrarse")
     print("2. Iniciar sesion")

@@ -3,7 +3,7 @@ import os
 from flask import Flask
 from werkzeug.security import generate_password_hash, check_password_hash
 
-app = Flask(__SISTEMA DE LOGIN__)
+app = Flask(__name__)
 
 @app.route('/')
 
@@ -11,7 +11,7 @@ def index():
     return
 
 
-if __SISTEMA DE LOGIN__ =="__main__":
+if __name__ =="__main__":
     app.run(debug=True)
 
 PATH_APP = os.getcwd()

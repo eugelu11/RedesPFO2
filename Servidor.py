@@ -1,6 +1,6 @@
 import sqlite3
 import os
-from flask import Flask
+from flask import request
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
@@ -29,11 +29,11 @@ con.commit()
 
 
 
-
+@app.route('/registro', methods=['POST'])
 def registrar_usuario():
-    print("\n--- REGISTRO ---")
-    usuario = input("Ingrese su usuario: ")
-    contraseña = input("Ingrese su contraseña: ")
+    data = request.get_json()
+    usuario = data['usuario']
+    contraseña = data['contraseña']
 
     hash_contraseña = generate_password_hash(contraseña)
 
@@ -43,9 +43,9 @@ def registrar_usuario():
             (usuario, hash_contraseña)
         )
         con.commit()
-        print("Usuario registrado exitosamente")
+        return{"mensaje": "Usuario registrado"}
     except sqlite3.IntegrityError:
-        print("Ese usuario ya existe")
+        return{"mensaje": "Usuario ya existe"}
 
 
 def iniciar_sesion():

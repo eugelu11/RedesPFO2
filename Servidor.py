@@ -47,11 +47,11 @@ def registrar_usuario():
     except sqlite3.IntegrityError:
         return{"mensaje": "Usuario ya existe"}
 
-
+@app.route('/login', methods=['POST'])
 def iniciar_sesion():
-    print("\n--- LOGIN ---")
-    usuario = input("Ingrese su usuario: ")
-    contraseña = input("Ingrese su contraseña: ")
+    data = request.get_json()
+    usuario = data['usuario']
+    contraseña = data['contraseña']
 
     cursor.execute(
         "SELECT contraseña FROM usuarios WHERE usuario = ?",
@@ -62,34 +62,13 @@ def iniciar_sesion():
     if resultado:
         hash_guardado = resultado[0]
         if check_password_hash(hash_guardado, contraseña):
-            print("Login exitoso")
-            return True
+            return {"mensaje": "Login exitoso"}
         else:
-            print("Contraseña incorrecta")
-            return False
+            return {"mensaje": "Usuario o contraseña incorrectos"}
     else:
-        print("Usuario no encontrado")
-        return False
+            return {"mensaje": "Usuario o contraseña incorrectos"}
 
-
-while True:
     
-    print("\n=== SISTEMA DE LOGIN ===")
-    print("1. Registrarse")
-    print("2. Iniciar sesion")
-    print("3. Salir")
 
-    opcion = input("Seleccione una opcion: ")
-
-    if opcion == "1":
-        registrar_usuario()
-    elif opcion == "2":
-        if iniciar_sesion():
-            print("Bienvenido/a a la plataforma")
-            break
-    elif opcion == "3":
-        break
-    else:
-        print("Opcion invalida")
 
 con.close()

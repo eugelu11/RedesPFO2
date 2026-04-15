@@ -68,7 +68,10 @@ def iniciar_sesion():
     else:
             return {"mensaje": "Usuario o contraseña incorrectos"}
 
-    
+
+@app.route('/tareas', methods=['GET'])
+def tareas():
+    return "<h1>Bienvenido/a</h1> <br><h2>Este es el PFO 2 de Eugenia Lucchelli</h2>"    
 
 
 con.close()

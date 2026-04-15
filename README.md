@@ -1,12 +1,4 @@
 # PFO 2 - Sistema de Gestión de Tareas con API y Base de Datos:
-# Respuestas conceptuales (ver abajo cómo correr):
-## 1. 
-Las contraseñas deben ser hasheadas por seguridad: en caso de haber alguna vulnerabilidad en el sistema si las contraseñas fueran almacenadas como texto plano quienes realicen el ataque pueden acceder fácilmente a las contraseñas. En cambio al hashearlas las contraseñas se convierten en strings que son únicos y a partir de los cuales no se puede revertir para conocer la contraseña.
-
-## 2.
-En nuestro caso SQLite es ideal porque no necesitamos servers, si no que se puede usar el almacenamiento local sin necesidad de configuración. SQLite se puede usar más que nada en proyectos chicos como es nuestro caso. 
-
-
 
 ## Descripción
 
@@ -143,12 +135,3 @@ Se utiliza SQLite, una base de datos ligera basada en archivos que no requiere c
 ## Autora
 
 Eugenia Lucchelli
-
----
-
-## Estado del proyecto
-
-API funcional
-Base de datos persistente
-Cliente en consola
-Autenticación básica implementada

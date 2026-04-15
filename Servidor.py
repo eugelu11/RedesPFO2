@@ -1,18 +1,18 @@
 import sqlite3
 import os
-from flask import request
+from flask import Flask, request
 from werkzeug.security import generate_password_hash, check_password_hash
-
 app = Flask(__name__)
+print(app.url_map) 
 
 @app.route('/')
+def index():
+    return "Servidor funcionando"
 
 def index():
     return
 
 
-if __name__ =="__main__":
-    app.run(debug=True)
 
 PATH_APP = os.getcwd()
 PATH_BBDD = os.path.join(PATH_APP, 'miBBDD.db')
@@ -74,4 +74,6 @@ def tareas():
     return "<h1>Bienvenido/a</h1> <br><h2>Este es el PFO 2 de Eugenia Lucchelli</h2>"    
 
 
+if __name__ =="__main__":
+    app.run(debug=True)
 con.close()

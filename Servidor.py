@@ -17,7 +17,7 @@ def index():
 PATH_APP = os.getcwd()
 PATH_BBDD = os.path.join(PATH_APP, 'miBBDD.db')
 
-con = sqlite3.connect(PATH_BBDD)
+con = sqlite3.connect(PATH_BBDD, check_same_thread=False)
 cursor = con.cursor()
 cursor.execute("""
     CREATE TABLE IF NOT EXISTS usuarios (

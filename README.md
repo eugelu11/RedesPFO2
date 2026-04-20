@@ -133,5 +133,5 @@ Se utiliza SQLite, una base de datos ligera basada en archivos que no requiere c
 
 ## Autora
 
-#Eugenia Lucchelli
+Eugenia Lucchelli
 

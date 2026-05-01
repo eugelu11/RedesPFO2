@@ -95,7 +95,7 @@ El programa mostrará un menú:
 ```
 1. Registrarse
 2. Login
-3. Ver tareas
+3. Salir
 ```
 
 ### Registrarse
@@ -105,6 +105,13 @@ Permite crear un nuevo usuario en la base de datos.
 ### Login
 
 Verifica las credenciales ingresadas.
+
+Recién cuando el login sea correcto se mostrará el siguiente menú
+
+```
+1. Ver tareas
+2. Salir
+```
 
 ### Ver tareas
 
